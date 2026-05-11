@@ -1,8 +1,8 @@
 import pandas as pd
-from mlflow import log_metric, log_params
+from mlflow import log_metric
 import mlflow
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, precision_score
+from sklearn.metrics import accuracy_score, classification_report, precision_score
 import yaml
 with open("configs/config.yaml", "r") as f:
     config = yaml.safe_load(f)

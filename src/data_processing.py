@@ -1,6 +1,9 @@
+import os
 import pandas as pd
 from sklearn.model_selection import train_test_split
 import yaml
+
+os.makedirs("data/processed", exist_ok=True)
 
 with open("configs/config.yaml", "r") as f:
     config = yaml.safe_load(f)
