@@ -16,7 +16,11 @@ jobs:                           # Yapılacak işler
           python-version: '3.11'
       - name: Install dependencies        # 3. Kütüphaneleri kur
         run: pip install -r requirements.txt
-      - name: Lint                         # 4. Kod kalitesi kontrolü
+      - name: Lint
         run: flake8 src/ api/ tests/
-      - name: Run tests                   # 5. Testleri çalıştır
+      - name: Data Processing
+        run: python src/data_processing.py
+      - name: Train Model
+        run: python src/train.py
+      - name: Run tests
         run: pytest tests/
