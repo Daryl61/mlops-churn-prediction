@@ -1,4 +1,3 @@
-import pandas as pd
 import yaml
 from fastapi.testclient import TestClient
 config  = yaml.safe_load(open("configs/config.yaml", "r"))
