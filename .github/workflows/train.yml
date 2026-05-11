@@ -1,0 +1,23 @@
+name: Train Pipeline
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Data Processing
+        run: python src/data_processing.py
+      - name: Train Model
+        run: python src/train.py
+      - name: Evaluate Model
+        run: python src/evaluate.py

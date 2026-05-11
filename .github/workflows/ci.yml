@@ -1,0 +1,22 @@
+name: CI Pipeline              # İsim — GitHub'da Actions sekmesinde görünür
+
+on:                             # Ne zaman tetiklensin?
+  pull_request:                 # PR açıldığında
+    branches: [main]            # main branch'e doğru olan PR'larda
+
+jobs:                           # Yapılacak işler
+  test:                         # İş adı (istediğin ismi ver)
+    runs-on: ubuntu-latest      # Hangi makinede çalışsın (GitHub'ın Linux sunucusu)
+    
+    steps:                      # Adımlar — sırayla çalışır
+      - uses: actions/checkout@v4          # 1. Repo kodunu indir
+      - name: Set up Python               # 2. Python kur
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies        # 3. Kütüphaneleri kur
+        run: pip install -r requirements.txt
+      - name: Lint                         # 4. Kod kalitesi kontrolü
+        run: flake8 src/ api/ tests/
+      - name: Run tests                   # 5. Testleri çalıştır
+        run: pytest tests/
