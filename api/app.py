@@ -7,7 +7,7 @@ runs = mlflow.search_runs(order_by=["start_time DESC"])
 last_run_id = runs.iloc[0]["run_id"]
 model = mlflow.sklearn.load_model(f"runs:/{last_run_id}/random_forest_model")
 
-from pydantic import BaseModel,Field
+from pydantic import BaseModel, Field
 #burda giriş verilerini kullanıcdan almak için bir pydantic model oluşturuyoruz
 class customerdata(BaseModel):
     SeniorCitizen: int
@@ -40,6 +40,7 @@ class customerdata(BaseModel):
     class Config:
         populate_by_name = True
 
+    
 app = FastAPI()
 
 @app.get("/health")
